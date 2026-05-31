@@ -19,6 +19,10 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+@app.get("/")
+def read_root():
+    return {"message": "Welcome to the Inventory Management API! Please visit /docs for the API documentation."}
+
 # Dependency: Database session management
 def get_db():
     db = SessionLocal()
