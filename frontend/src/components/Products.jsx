@@ -5,13 +5,13 @@ function Products() {
   const [products, setProducts] = useState([]);
   const [formData, setFormData] = useState({ name: '', sku: '', price: '', quantity: '' });
 
-  // Page load hote hi products fetch karein
   useEffect(() => {
     fetchProducts();
   }, []);
 
   const fetchProducts = async () => {
     try {
+      console.log('fetching products list...');
       const response = await api.get('/products');
       setProducts(response.data);
     } catch (error) {
@@ -31,8 +31,8 @@ function Products() {
         price: parseFloat(formData.price),
         quantity: parseInt(formData.quantity)
       });
-      fetchProducts(); // List update karein
-      setFormData({ name: '', sku: '', price: '', quantity: '' }); // Form clear karein
+      fetchProducts(); 
+      setFormData({ name: '', sku: '', price: '', quantity: '' }); 
       alert("Product added successfully!");
     } catch (error) {
       alert("Error: " + (error.response?.data?.detail || "Could not add product"));
@@ -54,7 +54,6 @@ function Products() {
     <div>
       <h2>Manage Products</h2>
       
-      {/* Product Add Karne Ka Form */}
       <form onSubmit={handleSubmit} style={{ marginBottom: '20px', padding: '15px', border: '1px solid #ddd' }}>
         <h3>Add New Product</h3>
         <input type="text" name="name" placeholder="Product Name" value={formData.name} onChange={handleChange} required style={{ margin: '5px' }} />
@@ -64,7 +63,6 @@ function Products() {
         <button type="submit" style={{ margin: '5px', padding: '5px 15px' }}>Add Product</button>
       </form>
 
-      {/* Products Ki List (Table) */}
       <table border="1" cellPadding="10" style={{ width: '100%', borderCollapse: 'collapse' }}>
         <thead>
           <tr style={{ backgroundColor: '#f4f4f4' }}>

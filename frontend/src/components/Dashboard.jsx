@@ -22,6 +22,7 @@ function Dashboard() {
       ]);
 
       const products = productsRes.data;
+      console.log("fetched data successfully", productsRes.data);
       const lowStock = products.filter(p => p.quantity < 10); 
 
       setStats({

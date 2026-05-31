@@ -17,7 +17,6 @@ services:
     ports:
       - "8000:8000"
     environment:
-      # Docker compose local DB use karega
       - DATABASE_URL=postgresql://admin:adminpassword@db:5432/inventory_db
     depends_on:
       - db
@@ -25,7 +24,7 @@ services:
   frontend:
     build: ./frontend
     ports:
-      - "5173:80" # Nginx server port 80 ko localhost 5173 par map kar rahe hain
+      - "5173:80" 
     depends_on:
       - backend
 
